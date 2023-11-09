@@ -1,9 +1,7 @@
 from django.db import models
 
 
-# Create your models here.
-
-class Suprt_admin_register(models.Model):
+class register(models.Model):
     first_name = models.CharField(max_length=500)
     last_name = models.CharField(max_length=500)
     email = models.CharField(max_length=200)
@@ -13,7 +11,7 @@ class Suprt_admin_register(models.Model):
         return self.first_name + " " + self.last_name
 
 
-class Super_admin_login(models.Model):
+class login(models.Model):
     login_email = models.CharField(max_length=500)
     login_password = models.CharField(max_length=200)
     login_datetime = models.DateTimeField(null=True)
@@ -22,7 +20,7 @@ class Super_admin_login(models.Model):
         return self.login_email
 
 
-class Super_admin_profile(models.Model):
+class profile(models.Model):
     profile_name = models.CharField(max_length=500)
     profile_address = models.CharField(max_length=500)
     profile_gender = models.CharField(max_length=100)
@@ -34,7 +32,7 @@ class Super_admin_profile(models.Model):
         return self.profile_name
 
 
-class Super_admin_add_student(models.Model):
+class add_student(models.Model):
     student_name = models.CharField(max_length=500)
     student_address = models.TextField()
     student_course = models.CharField(max_length=500)
@@ -43,7 +41,8 @@ class Super_admin_add_student(models.Model):
     def __str__(self):
         return self.student_name + " " + self.student_course
 
-class Super_admin_add_faculty(models.Model):
+
+class add_faculty(models.Model):
     faculty_name = models.CharField(max_length=500)
     faculty_position = models.CharField(max_length=200)
     faculty_address = models.CharField(max_length=500)
@@ -54,7 +53,8 @@ class Super_admin_add_faculty(models.Model):
     def __str__(self):
         return self.faculty_name + " " + self.faculty_position
 
-class Super_admin_add_admin(models.Model):
+
+class add_admin(models.Model):
     admin_name = models.CharField(max_length=500)
     admin_address = models.CharField(max_length=500)
     admin_DOB = models.DateField()
@@ -63,26 +63,59 @@ class Super_admin_add_admin(models.Model):
     def __str__(self):
         return self.admin_name
 
-class Super_admin_add_event_activite(models.Model):
+
+class add_parents(models.Model):
+    parents_name = models.CharField(max_length=200)
+    student_name = models.CharField(max_length=200)
+    parents_address = models.TextField()
+    parents_gender = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.parents_name + " " + self.student_name
+
+
+class add_event_activite(models.Model):
     E_A_name = models.CharField(max_length=300)
     E_A_Notice = models.TextField()
 
     def __str__(self):
         return self.E_A_name
 
-class Super_admin_fees_notice(models.Model):
+
+class fees_notice(models.Model):
     Student_name = models.CharField(max_length=100)
     fees_notice = models.TextField()
 
     def __str__(self):
         return self.Student_name
 
-class Super_admin_time_table(models.Model):
-    table_days = models.CharField(max_length=200)
-    table_time = models.TimeField()
-    table_subject = models.TextField()
-    table_course = models.CharField(max_length=100)
+
+class time_table(models.Model):
+    school_std = models.CharField(max_length=30, null=True)
+    school_start = models.TimeField(null=True)
+    school_end = models.TimeField(null=True)
+    school_day1 = models.CharField(max_length=20, null=True)
+    day1_subject = models.TextField(null=True)
+    school_day2 = models.CharField(max_length=20, null=True)
+    day2_subject = models.TextField(null=True)
+    school_day3 = models.CharField(max_length=20, null=True)
+    day3_subject = models.TextField(null=True)
+    school_day4 = models.CharField(max_length=20, null=True)
+    day4_subject = models.TextField(null=True)
+    school_day5 = models.CharField(max_length=20, null=True)
+    day5_subject = models.TextField(null=True)
+    school_day6 = models.CharField(max_length=20, null=True)
+    day6_subject = models.TextField(null=True)
 
     def __str__(self):
-        return self.table_course
+        return self.school_std
 
+
+class exam_time_table(models.Model):
+    exam_std = models.CharField(max_length=50)
+    exam_date = models.CharField(max_length=200)
+    exam_subject = models.CharField(max_length=200)
+    exam_time = models.TimeField()
+
+    def __str__(self):
+        return self.exam_std

@@ -38,8 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'Super_admin'
-    'admin',
+    'Super_admin',
+    'User',
     'faculty',
     'parents',
     'student',
@@ -74,15 +74,18 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'SMS.wsgi.application'
-
-
+# AUTH_USER_MODEL = 'Super_admin.User'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'SMS',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 

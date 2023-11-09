@@ -1,9 +1,7 @@
 from django.urls import path
-from Super_admin import views
-
+from . import views
+# from .views import UserList
 urlpatterns = [
     path('', views.home, name='home'),
-    path('register/<str:fname>/<str:lname>/<str:email>/<str:password>', views.register),
-    path('login/<str:first>/<str:second>', views.login),
-    path('profile/<int:pk>/<str:pname>/<str:padd>/<str:pgender>/<str:pmnumber>/<str:pdob>/<str:pstatus>',views.profile)
-]
+    # path('reg',UserList.as_view(), name='reg')
+    ]
