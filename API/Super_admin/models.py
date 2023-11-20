@@ -11,15 +11,6 @@ class register(models.Model):
         return self.first_name + " " + self.last_name
 
 
-class login(models.Model):
-    login_email = models.CharField(max_length=500)
-    login_password = models.CharField(max_length=200)
-    login_datetime = models.DateTimeField(null=True)
-
-    def __str__(self):
-        return self.login_email
-
-
 class profile(models.Model):
     profile_name = models.CharField(max_length=500)
     profile_address = models.CharField(max_length=500)

@@ -5,4 +5,3 @@ from Super_admin.models import *
 
 # admin.site.register(User)
 admin.site.register(register)
-admin.site.register(login)
