@@ -4,7 +4,9 @@ from . import views
 # from .views import UserList
 urlpatterns = [
     path('', views.home, name='home'),
-    path('Register/<str:fn>/<str:ln>/<str:em>/<str:ps>', views.Register),
-    path('Login/<str:em>/<str:ps>', views.Login),
+    path('register/', views.register),
+    path('login/', views.login),
+    path('logout/', views.logout),
     path('all_register/', views.all_register),
+    path('profile/',views.profile)
 ]

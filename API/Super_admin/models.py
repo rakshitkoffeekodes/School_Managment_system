@@ -1,17 +1,32 @@
 from django.db import models
 
 
-class register(models.Model):
-    first_name = models.CharField(max_length=500)
-    last_name = models.CharField(max_length=500)
-    email = models.CharField(max_length=200)
-    password = models.CharField(max_length=500)
+class User(models.Model):
+    SUPERADMIN = 1
+    ADMIN = 2
+    FACULTY = 3
+    PARENTS = 4
+    STUDENT = 5
+
+    ROLE_CHOICE = (
+        (SUPERADMIN, 'superadmin'),
+        (ADMIN, 'admin'),
+        (FACULTY, 'faculty'),
+        (PARENTS, 'parents'),
+        (STUDENT, 'student')
+    )
+
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    email = models.EmailField(unique=True)
+    role_choice = models.PositiveSmallIntegerField(choices=ROLE_CHOICE, blank=True, default=3)
+    password = models.CharField(max_length=100)
 
     def __str__(self):
         return self.first_name + " " + self.last_name
 
 
-class profile(models.Model):
+class Profile(models.Model):
     profile_name = models.CharField(max_length=500)
     profile_address = models.CharField(max_length=500)
     profile_gender = models.CharField(max_length=100)
@@ -23,7 +38,7 @@ class profile(models.Model):
         return self.profile_name
 
 
-class add_student(models.Model):
+class Add_student(models.Model):
     student_name = models.CharField(max_length=500)
     student_address = models.TextField()
     student_course = models.CharField(max_length=500)
@@ -33,7 +48,7 @@ class add_student(models.Model):
         return self.student_name + " " + self.student_course
 
 
-class add_faculty(models.Model):
+class Add_faculty(models.Model):
     faculty_name = models.CharField(max_length=500)
     faculty_position = models.CharField(max_length=200)
     faculty_address = models.CharField(max_length=500)
@@ -45,7 +60,7 @@ class add_faculty(models.Model):
         return self.faculty_name + " " + self.faculty_position
 
 
-class add_admin(models.Model):
+class Add_admin(models.Model):
     admin_name = models.CharField(max_length=500)
     admin_address = models.CharField(max_length=500)
     admin_DOB = models.DateField()
@@ -55,7 +70,7 @@ class add_admin(models.Model):
         return self.admin_name
 
 
-class add_parents(models.Model):
+class Add_parents(models.Model):
     parents_name = models.CharField(max_length=200)
     student_name = models.CharField(max_length=200)
     parents_address = models.TextField()
@@ -65,7 +80,7 @@ class add_parents(models.Model):
         return self.parents_name + " " + self.student_name
 
 
-class add_event_activite(models.Model):
+class Add_event_activite(models.Model):
     E_A_name = models.CharField(max_length=300)
     E_A_Notice = models.TextField()
 
@@ -73,7 +88,7 @@ class add_event_activite(models.Model):
         return self.E_A_name
 
 
-class fees_notice(models.Model):
+class Fees_notice(models.Model):
     Student_name = models.CharField(max_length=100)
     fees_notice = models.TextField()
 
@@ -81,7 +96,7 @@ class fees_notice(models.Model):
         return self.Student_name
 
 
-class time_table(models.Model):
+class Time_table(models.Model):
     school_std = models.CharField(max_length=30, null=True)
     school_start = models.TimeField(null=True)
     school_end = models.TimeField(null=True)
@@ -102,7 +117,7 @@ class time_table(models.Model):
         return self.school_std
 
 
-class exam_time_table(models.Model):
+class Exam_time_table(models.Model):
     exam_std = models.CharField(max_length=50)
     exam_date = models.CharField(max_length=200)
     exam_subject = models.CharField(max_length=200)
